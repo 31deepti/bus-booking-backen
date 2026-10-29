@@ -1,0 +1,27 @@
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Generated Prisma Client
+generated/prisma/
+
+# Build output
+dist/
+
+# Logs
+npm-debug.log*
+*.log
+
+# OS files
+.DS_Store
+
+# Editor and AI-tool-specific files
+.agents/
+.claude/
+.cursor/
+.devin/

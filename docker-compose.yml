@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:17
+    container_name: bus-booking-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: bus_user
+      POSTGRES_PASSWORD: bus_password
+      POSTGRES_DB: bus_booking
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
