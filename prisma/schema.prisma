@@ -14,10 +14,10 @@ enum BookingStatus{
 }
 
 model Passenger{
-  id Int @id @default(autoincrement())
-  name String
-  email String @unique
-  bookings Booking[]
+  id        Int        @id      @default(autoincrement())
+  name      String
+  email     String     @unique
+  bookings  Booking[]
 }
 
 model Bus{
@@ -54,4 +54,26 @@ model Trip{
   bookingSeats  BookingSeats[]
 }
 
+model Booking{
+  id             Int             @id    @default(autoincrement())
+  passengerId    Int
+  tripId         Int
+  status         BookingStatus           @default(PENDING)
+  createdAt      DateTime                @default(now())
+
+  passenger      Passenger       @relation(field: [passengerId],references: [id])
+  trip           Trip            @relation(fields: [tripId], references: [id])
+  seats          BookingSeat[]
+}
+
+model BookingSeat{
+  id              Int       @default(autoincrement())
+  tripId          Int
+  bookingId       Int
+  seatId          Int
+
+  trip            Trip      @relation(fields: [tripId], references: [id])
+  booking         Booking   @relation(fields:[bookingId], references:[id])
+  seat            Seat      @relation(fields: [seatId], references: [id])
+}
 
